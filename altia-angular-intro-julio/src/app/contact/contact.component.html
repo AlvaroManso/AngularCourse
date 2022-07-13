@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup">
+  <div>
+    <label for="name">Your name</label>
+    <input id="name"
+           name="name"
+           type="text"
+           placeholder="Your name"
+           formControlName="name"
+           [attr.aria-invalid]="isInvalid('name')">
+    <small *ngIf="mustShowError('name')"> {{ getControl('name').errors | json }} </small>
+  </div>
+  <div>
+    <label for="email">Your email</label>
+    <input id="email"
+           name="email"
+           type="email"
+           placeholder="Your email"
+           formControlName="email"
+           [attr.aria-invalid]="isInvalid('email')">
+    <small *ngIf="mustShowError('email')"> {{ getControl('email').errors | json }} </small>
+  </div>
+  <div>
+    <label for="message">Your message</label>
+    <textarea id="message"
+              name="message"
+              placeholder="Your message"
+              formControlName="message"
+              [attr.aria-invalid]="isInvalid('message')"></textarea>
+    <small *ngIf="mustShowError('message')"> {{ getControl('message').errors | json }} </small>
+  </div>
+  <button (click)="onSendClick()"
+          [disabled]="formGroup.invalid"> Send </button>
+</form>
